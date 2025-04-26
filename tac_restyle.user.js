@@ -6,8 +6,8 @@
 // @license      This script is licensed for private use only by hachiman-oct.
 // @license      Reproduction, modification, redistribution, and use by others are strictly prohibited.
 // @match        https://ws.tac-school.co.jp/*
-// @updateURL    https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac/tac_restyle.user.js
-// @downloadURL  https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac/tac_restyle.user.js
+// @updateURL    https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_restyle.user.js
+// @downloadURL  https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_restyle.user.js
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==

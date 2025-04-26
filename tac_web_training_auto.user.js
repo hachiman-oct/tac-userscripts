@@ -7,8 +7,8 @@
 // @license      Reproduction, modification, redistribution, and use by others are strictly prohibited.
 // @description  キーボード入力だけで TAC Web Training を自動操作
 // @match        https://ws.tac-school.co.jp/*
-// @updateURL    https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac/tac_web_training_auto.user.js
-// @downloadURL  https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac/tac_web_training_auto.user.js
+// @updateURL    https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_web_training_auto.user.js
+// @downloadURL  https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_web_training_auto.user.js
 // @grant        none
 // @run-at       document-end
 // ==/UserScript==
