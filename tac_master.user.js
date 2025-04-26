@@ -14,4 +14,4 @@
 // @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac/tac_web_training_auto.user.js
 // ==/UserScript==
 
-console.log("Master script loaded");
+console.log("Tac Master script loaded");
