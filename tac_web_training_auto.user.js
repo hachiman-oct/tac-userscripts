@@ -32,6 +32,8 @@
         for (const [key, condition] of Object.entries(pageMap)) {
         page[key] = (controller === condition.controller && action === condition.action);
     };
+
+    window.tacCurrentPage = page;
     
     const isValidPage = Object.values(page).some(Boolean);
     if (!isValidPage) return;
