@@ -9,9 +9,9 @@
 // @updateURL    https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_master.user.js
 // @downloadURL  https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_master.user.js
 // @grant        none
-// @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_login.user.js
-// @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_restyle.user.js
-// @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_web_training_auto.user.js
+// @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_login.js
+// @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_restyle.js
+// @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_web_training_auto.js
 // @require      https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/tac_display_question_count.js
 // ==/UserScript==
 
