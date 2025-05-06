@@ -34,7 +34,7 @@
 
         const num = document.querySelector(".question-title")?.textContent.split("問題")[1]
 
-        const title = document.querySelector("#title");
+        const title = document.querySelector("h1");
         title.textContent = `${title.textContent}　${num}問 / ${count}問`
     }
 })();
