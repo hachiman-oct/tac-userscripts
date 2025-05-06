@@ -26,15 +26,16 @@
 
     function displayQuestionCount() {
         const match = document.querySelector(".breadcrumbsList > li:nth-child(4) a")?.pathname.match(/\/web_trainings\/(\d+)/);
-        if (!match) return;;
+        if (!match) return 1;
 
         const questionID = Number(match[1]);
         const count = localStorage.getItem(`tac_question_count_${questionID}`);
-        if (!count) return;
+        if (!count) return 2;
 
         const num = document.querySelector(".question-title")?.textContent.split("問題")[1]
 
-        const title = document.querySelector("h1");
+        let title = document.querySelector("#title") || document.querySelector(".leransHeading h1");
         title.textContent = `${title.textContent}　${num}問 / ${count}問`
+        console.log("done")
     }
 })();
