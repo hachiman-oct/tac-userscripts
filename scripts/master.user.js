@@ -59,7 +59,7 @@
 
                 const isHome = tacPage.afterLogin?.isHome;
                 if (isHome) {
-                    loadScript('insert_table.js');
+                    loadScript('quick_link_table.js');
                 }
 
                 const isBeforeLoginPage = Object.values(tacPage.beforeLogin || {}).some(Boolean);
