@@ -49,6 +49,6 @@
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://hachiman-oct.github.io/tac-userscripts/scss/quick_link_table.scss";
+    link.href = "https://hachiman-oct.github.io/tac-userscripts/css/quick_link_table.css";
     document.head.appendChild(link);
 })();

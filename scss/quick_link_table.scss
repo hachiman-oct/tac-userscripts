@@ -4,7 +4,7 @@ $secondly-color: #d4d7de;
 .appended-table {
     box-sizing: border-box;
     width: 100%;
-    border: 2px solid $secondly-colo;
+    border: 2px solid $secondly-color;
     margin-top: 1rem;
 
     tr,
@@ -24,7 +24,7 @@ $secondly-color: #d4d7de;
 
     td {
         padding: 0.1rem;
-        border: 0.1rem solid $secondly-colo;
+        border: 0.1rem solid $secondly-color;
     }
 
     a {
