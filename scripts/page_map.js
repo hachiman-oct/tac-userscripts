@@ -1,0 +1,28 @@
+(function () {
+    'use strict';
+
+    const currentUrl = window.location.pathname;
+    const controller = document.body.dataset.controller;
+    const action = document.body.dataset.action;
+
+    const page = {
+        // URLベースの判定
+        beforeLogin: {
+            login: currentUrl === '/user_session/new',
+            chair: currentUrl === '/home/choice_chair',
+            course: currentUrl === '/home/choice_course',
+        },
+
+        // controller & action ベースの判定
+        afterLogin: {
+            isWebTrainingEntryPage: controller === "web_trainings" && action === "subjects",
+            isChapterListPage: controller === "web_trainings" && action === "index",
+            isChapterDetailPage: controller === "web_trainings" && action === "show",
+            isQuestionSolvePage: controller === "web_training_questions" && action === "show",
+            isResult: controller === "web_training_questions" && action === "result",
+            isHome: controller === "home" && action === "index",
+        },
+    };
+
+    window.tacCurrentPage = page;
+})();

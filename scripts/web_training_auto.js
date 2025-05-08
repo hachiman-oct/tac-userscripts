@@ -1,27 +1,7 @@
 (function () {
     'use strict';
 
-    const controller = document.body.dataset.controller;
-    const action = document.body.dataset.action;
-
-    const pageMap = {
-        isWebTrainingEntryPage: { controller: "web_trainings", action: "subjects" },
-        isChapterListPage: { controller: "web_trainings", action: "index" },
-        isChapterDetailPage: { controller: "web_trainings", action: "show" },
-        isQuestionSolvePage: { controller: "web_training_questions", action: "show" },
-        isResult: { controller: "web_training_questions", action: "result" },
-        isHome: { controller: "home", action: "index" }
-    };
-
-    const page = {};
-    for (const [key, condition] of Object.entries(pageMap)) {
-        page[key] = (controller === condition.controller && action === condition.action);
-    };
-
-    window.tacCurrentPage = page;
-
-    const isValidPage = Object.values(page).some(Boolean);
-    if (!isValidPage) return;
+    const page = window.tacCurrentPage.afterLogin;
 
     // モーダルが開いていたら閉じる
     if (page.isQuestionSolvePage) {

@@ -5,13 +5,9 @@
         if (window.tacCurrentPage) {
             clearInterval(interval);
 
-            if (window.tacCurrentPage.isChapterDetailPage) {
-                getQuestionCount();
-            }
+            if (window.tacCurrentPage.isChapterDetailPage) getQuestionCount();
 
-            if (window.tacCurrentPage.isQuestionSolvePage) {
-                displayQuestionCount();
-            }
+            if (window.tacCurrentPage.isQuestionSolvePage) displayQuestionCount();
         }
     }, 100);
 

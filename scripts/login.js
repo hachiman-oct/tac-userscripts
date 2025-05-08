@@ -1,12 +1,7 @@
 (function () {
     'use strict';
 
-    const currentUrl = window.location.pathname;
-    const page = {
-        login: currentUrl === '/user_session/new',
-        chair: currentUrl === '/home/choice_chair',
-        course: currentUrl === '/home/choice_course'
-    }
+    const page = window.tacCurrentPage.beforeLogin;
 
     const STORAGE_KEY_ID = 'tac_user_id';
     const STORAGE_KEY_PASS = 'tac_user_pass';
