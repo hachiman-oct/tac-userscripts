@@ -29,7 +29,7 @@
         }
     });
 
-    if (window.tacCurrentPage.isMobile) goNextButton();
+    if (window.tacCurrentPage.isMobile && page.isQuestionSolvePage) goNextButton();
 
     // 質問画面でキーボード操作対応
     const keyMap = {
