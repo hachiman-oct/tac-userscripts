@@ -16,9 +16,15 @@
 
     const base = 'https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/scripts/';
 
-    loadScript('page_map.js');
+    function loadScript(file, callback) {
+        const script = document.createElement('script');
+        script.src = base + file;
+        script.type = 'text/javascript';
+        script.onload = callback || null;
+        document.head.appendChild(script);
+    }
 
-    // 必要なページ判定（例: window.tacCurrentPage がある前提）
+    // ページ判定を待ってから各スクリプトを条件付きで読み込む
     function waitForPage(resolveWhen) {
         const timer = setInterval(() => {
             if (resolveWhen()) {
@@ -28,28 +34,26 @@
         }, 100);
     }
 
-    function loadScript(file) {
-        const script = document.createElement('script');
-        script.src = base + file;
-        script.type = 'text/javascript';
-        document.head.appendChild(script);
-    }
+    // 1. page_map.js を読み込んでから処理を始める
+    loadScript('page_map.js', () => {
+        waitForPage(() => {
+            const tacPage = window.tacCurrentPage;
+            if (!tacPage) return false;
 
-    waitForPage(() => {
-        const page = window.tacCurrentPage;
-        if (!page) return false;
+            const isAfterLoginPage = Object.values(tacPage.afterLogin || {}).some(Boolean);
+            if (isAfterLoginPage) {
+                loadScript('web_training_auto.js');
+                loadScript('display_question_count.js');
+                loadScript('restyle.js');
+            }
 
-        const isAfterLoginPage = Object.values(window.tacCurrentPage.afterLogin).some(Boolean);
-        if (isAfterLoginPage) {
-            loadScript('web_training_auto');
-            loadScript('display_question_count');
-            loadScript('restyle');
-        };
+            const isHome = tacPage.afterLogin?.isHome;
+            if (isHome) loadScript('insert_table.js');
 
-        const isHome = Object.values(window.tacCurrentPage.afterLogin.isHome).some(Boolean);
-        if (isHome) loadScript('insert_table');
+            const isBeforeLoginPage = Object.values(tacPage.beforeLogin || {}).some(Boolean);
+            if (isBeforeLoginPage) loadScript('login.js');
 
-        const isBeforeLoginPage = Object.values(window.tacCurrentPage.beforeLogin).some(Boolean);
-        if (isBeforeLoginPage) loadScript('login');
+            return true;
+        });
     });
 })();
