@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     const controller = document.body.dataset.controller;
@@ -12,14 +12,14 @@
         isResult: { controller: "web_training_questions", action: "result" },
         isHome: { controller: "home", action: "index" }
     };
-    
+
     const page = {};
-        for (const [key, condition] of Object.entries(pageMap)) {
+    for (const [key, condition] of Object.entries(pageMap)) {
         page[key] = (controller === condition.controller && action === condition.action);
     };
 
     window.tacCurrentPage = page;
-    
+
     const isValidPage = Object.values(page).some(Boolean);
     if (!isValidPage) return;
 
@@ -39,31 +39,43 @@
         return;
     }
 
-    // 質問画面でキーボード操作対応
-    document.addEventListener('keydown', async function(e) {
+    // キー入力イベントの処理
+    document.addEventListener('keydown', (e) => {
         const key = e.key.toLowerCase();
-
-        if (key === "enter") {
-            // セクション画面では「はじめる」ボタンを自動クリック
-            if (page.isChapterDetailPage) {
-                startQuestion();
-            }
-        }
-
-        if (key === 'a' || key === 'd') {
-            if (page.isQuestionSolvePage) {
-                selectAnswer(key);
-            } else if (page.isChapterDetailPage) {
-                goAnotherQuestion(key);
-            }
-        }
-
-        if (/^[1-3]$/.test(key)) {
-            if (page.isQuestionSolvePage) {
-                goNextQuestion(key);
-            }
+        if (keyMap[key]) {
+            keyMap[key]();
         }
     });
+
+    // 質問画面でキーボード操作対応
+    const keyMap = {
+        space: () => {
+            if (page.isChapterDetailPage) startQuestion();
+        },
+        a: () => {
+            if (page.isQuestionSolvePage) {
+                selectAnswer('left');
+            } else if (page.isChapterDetailPage) {
+                goAnotherQuestion('left');
+            }
+        },
+        d: () => {
+            if (page.isQuestionSolvePage) {
+                selectAnswer('');
+            } else if (page.isChapterDetailPage) {
+                goAnotherQuestion('');
+            }
+        },
+        q: () => {
+            if (page.isQuestionSolvePage) goNextQuestion(1);
+        },
+        w: () => {
+            if (page.isQuestionSolvePage) goNextQuestion(2);
+        },
+        e: () => {
+            if (page.isQuestionSolvePage) goNextQuestion(3);
+        }
+    };
 
     /**
      * 問題を始める．解答途中なら途中から開始
@@ -78,9 +90,9 @@
     /**正解を選ぶ
      * a: 正解、d: 不正解
      * @param {*} key 
-     */ 
+     */
     function selectAnswer(key) {
-        const btnId = key === 'a' ? "choice-answer-circle" : "choice-answer-x-mark";
+        const btnId = key === 'left' ? "choice-answer-circle" : "choice-answer-x-mark";
         const btn = document.getElementById(btnId);
         if (btn) btn.click();
 
@@ -106,7 +118,7 @@
         const nextQuestionBtn = document.getElementById("next_question");
 
         if (checkbox) {
-            checkbox.checked = (key !== "1");
+            checkbox.checked = (key !== 1);
             checkbox.dispatchEvent(new Event("change"));
         }
 
@@ -138,10 +150,10 @@
         const match = location.pathname.match(/\/web_trainings\/(\d+)/);
         if (match) {
             const baseNumber = Number(match[1]);
-            const targetNumber = key === 'a' ? baseNumber - 1 : baseNumber + 1;
-        
+            const targetNumber = key === 'left' ? baseNumber - 1 : baseNumber + 1;
+
             const targetUrl = location.href.replace(/\/web_trainings\/\d+/, `/web_trainings/${targetNumber}`);
             window.location.href = targetUrl;
-        }        
+        }
     }
 })();
