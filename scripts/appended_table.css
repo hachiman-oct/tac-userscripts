@@ -1,7 +1,8 @@
 .appended-table,
 .appended-table tr,
 .appended-table th,
-.appended-table td {
+.appended-table td
+.appended-table a {
     box-sizing: border-box;
 }
 
