@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    console.log("run insert_table.js");
+
     const table = document.createElement('table');
     table.className = 'appended-table';
 

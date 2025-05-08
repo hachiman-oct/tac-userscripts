@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    console.log("run login.js");
+
     const page = window.tacCurrentPage.beforeLogin;
 
     const STORAGE_KEY_ID = 'tac_user_id';

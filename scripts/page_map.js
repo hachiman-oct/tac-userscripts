@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    console.log("run page_map.js");
+
     const currentUrl = window.location.pathname;
     const controller = document.body.dataset.controller;
     const action = document.body.dataset.action;

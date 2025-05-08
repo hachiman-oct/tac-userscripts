@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    console.log("run display_question_count.js");
+
     const interval = setInterval(() => {
         if (window.tacCurrentPage) {
             clearInterval(interval);

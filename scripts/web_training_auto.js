@@ -1,6 +1,8 @@
 (function () {
     'use strict';
 
+    console.log("run web_training_auto.js");
+
     const page = window.tacCurrentPage.afterLogin;
 
     // モーダルが開いていたら閉じる

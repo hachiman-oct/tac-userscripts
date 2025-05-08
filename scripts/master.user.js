@@ -14,7 +14,7 @@
 (function () {
     'use strict';
 
-    const base = 'https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/scripts/';
+    const base = 'https://hachiman-oct.github.io/tac-userscripts/scripts/';
 
     function loadScript(file, callback) {
         const script = document.createElement('script');
