@@ -49,7 +49,7 @@
 
     // 質問画面でキーボード操作対応
     const keyMap = {
-        space: () => {
+        shift: () => {
             if (page.isChapterDetailPage) startQuestion();
         },
         a: () => {
