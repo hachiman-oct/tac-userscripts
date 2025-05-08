@@ -46,6 +46,6 @@
     main.appendChild(table);
 
     const script = document.createElement('script');
-    script.src = 'https://raw.githubusercontent.com/hachiman-oct/tac-userscripts/main/scripts/appended_table.css';
+    script.src = 'https://hachiman-oct.github.io/tac-userscripts/scripts/appended_table.css';
     document.head.appendChild(script);
 })();
