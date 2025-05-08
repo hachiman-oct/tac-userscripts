@@ -41,12 +41,12 @@
 
     table.appendChild(tbody);
 
-    const main = document.querySelector(".homeMain");
+    const main = document.querySelector(".homeChairName");
     if (!main) return;
     main.appendChild(table);
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
     link.href = "https://hachiman-oct.github.io/tac-userscripts/scripts/appended_table.css";
-    document.head.appendChild(link);    
+    document.head.appendChild(link);
 })();
