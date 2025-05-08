@@ -41,12 +41,14 @@
 
     table.appendChild(tbody);
 
-    const main = document.querySelector(".homeChairName");
-    if (!main) return;
-    main.appendChild(table);
+    const isMobile = window.tacCurrentPage.isMobile;
+    const parentSel = isMobile ? '#mypage_content' : '.homeThirdTier';
+    const parent = document.querySelector(parentSel);
+    if (!parent) return;
+    parent.insertBefore(table, parent.firstChild);
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "https://hachiman-oct.github.io/tac-userscripts/scripts/appended_table.css";
+    link.href = "https://hachiman-oct.github.io/tac-userscripts/scss/quick_link_table.scss";
     document.head.appendChild(link);
 })();

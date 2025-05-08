@@ -29,6 +29,8 @@
         }
     });
 
+    if (page.isMobile) goNextButton();
+
     // 質問画面でキーボード操作対応
     const keyMap = {
         shift: () => {
@@ -136,6 +138,32 @@
 
             const targetUrl = location.href.replace(/\/web_trainings\/\d+/, `/web_trainings/${targetNumber}`);
             window.location.href = targetUrl;
+        }
+    }
+
+    function goNextButton() {
+        if (!document.getElementById("goNextButtons")) {
+            const parent = document.querySelector("#btn-section-answer");
+            const container = document.createElement("div");
+            container.id = "goNextButtons";
+
+            for (let key = 1; key <= 3; key++) {
+                const btn = document.createElement("button");
+                btn.textContent = `Go ${key}`;
+
+                btn.addEventListener("click", () => {
+                    goNextQuestion(key);
+                });
+
+                container.appendChild(btn);
+            }
+
+            parent.insertBefore(container, parent.firstChild);
+
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "https://hachiman-oct.github.io/tac-userscripts/sccs/go_next_button.scss";
+            document.head.appendChild(link);
         }
     }
 })();

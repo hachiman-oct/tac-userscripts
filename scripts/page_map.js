@@ -8,14 +8,12 @@
     const action = document.body.dataset.action;
 
     const page = {
-        // URLベースの判定
         beforeLogin: {
             login: currentUrl === '/user_session/new',
             chair: currentUrl === '/home/choice_chair',
             course: currentUrl === '/home/choice_course',
         },
 
-        // controller & action ベースの判定
         afterLogin: {
             isWebTrainingEntryPage: controller === "web_trainings" && action === "subjects",
             isChapterListPage: controller === "web_trainings" && action === "index",
@@ -24,6 +22,8 @@
             isResult: controller === "web_training_questions" && action === "result",
             isHome: controller === "home" && action === "index",
         },
+
+        isMobile: window.innerWidth <= 768,
     };
 
     window.tacCurrentPage = page;
