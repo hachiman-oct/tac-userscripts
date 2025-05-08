@@ -162,7 +162,7 @@
 
             const link = document.createElement("link");
             link.rel = "stylesheet";
-            link.href = "https://hachiman-oct.github.io/tac-userscripts/sccs/go_next_button.scss";
+            link.href = "https://hachiman-oct.github.io/tac-userscripts/scss/go_next_button.scss";
             document.head.appendChild(link);
 
             console.log("run web_training_auto.js mobile");
