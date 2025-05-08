@@ -17,43 +17,56 @@
     const base = 'https://hachiman-oct.github.io/tac-userscripts/scripts/';
 
     function loadScript(file, callback) {
+        const fullUrl = base + file;
+        if (document.querySelector(`script[src="${fullUrl}"]`)) return;
+
         const script = document.createElement('script');
-        script.src = base + file;
+        script.src = fullUrl;
         script.type = 'text/javascript';
         script.onload = callback || null;
         document.head.appendChild(script);
     }
 
-    // ページ判定を待ってから各スクリプトを条件付きで読み込む
-    function waitForPage(resolveWhen) {
+    // ページが条件を満たしたら一度だけ onReady を実行
+    function waitForPage(conditionFn, onReady) {
         const timer = setInterval(() => {
-            if (resolveWhen()) {
+            if (conditionFn()) {
                 clearInterval(timer);
-                resolveWhen();
+                onReady();
             }
         }, 100);
     }
 
-    // 1. page_map.js を読み込んでから処理を始める
+    // メイン処理
     loadScript('page_map.js', () => {
-        waitForPage(() => {
-            const tacPage = window.tacCurrentPage;
-            if (!tacPage) return false;
+        waitForPage(
+            () => {
+                const tacPage = window.tacCurrentPage;
+                return tacPage && (
+                    Object.values(tacPage.afterLogin || {}).some(Boolean) ||
+                    Object.values(tacPage.beforeLogin || {}).some(Boolean)
+                );
+            },
+            () => {
+                const tacPage = window.tacCurrentPage;
 
-            const isAfterLoginPage = Object.values(tacPage.afterLogin || {}).some(Boolean);
-            if (isAfterLoginPage) {
-                loadScript('web_training_auto.js');
-                loadScript('display_question_count.js');
-                loadScript('restyle.js');
+                const isAfterLoginPage = Object.values(tacPage.afterLogin || {}).some(Boolean);
+                if (isAfterLoginPage) {
+                    loadScript('web_training_auto.js');
+                    loadScript('display_question_count.js');
+                    loadScript('restyle.js');
+                }
+
+                const isHome = tacPage.afterLogin?.isHome;
+                if (isHome) {
+                    loadScript('insert_table.js');
+                }
+
+                const isBeforeLoginPage = Object.values(tacPage.beforeLogin || {}).some(Boolean);
+                if (isBeforeLoginPage) {
+                    loadScript('login.js');
+                }
             }
-
-            const isHome = tacPage.afterLogin?.isHome;
-            if (isHome) loadScript('insert_table.js');
-
-            const isBeforeLoginPage = Object.values(tacPage.beforeLogin || {}).some(Boolean);
-            if (isBeforeLoginPage) loadScript('login.js');
-
-            return true;
-        });
+        );
     });
 })();
