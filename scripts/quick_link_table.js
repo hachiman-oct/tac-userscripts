@@ -42,10 +42,12 @@
     table.appendChild(tbody);
 
     const isMobile = window.tacCurrentPage.isMobile;
-    const parentSel = isMobile ? '.contentInner' : '.homeThirdTier';
+    const parentSel = isMobile ? '.contentInner' : '.homeMain';
     const parent = document.querySelector(parentSel);
     if (!parent) return;
-    parent.insertBefore(table, parent.firstChild);
+
+    const child = isMobile ? parent.firstChild : document.querySelector(".homeFirstTier")
+    parent.insertBefore(table, child);
 
     const link = document.createElement("link");
     link.rel = "stylesheet";
