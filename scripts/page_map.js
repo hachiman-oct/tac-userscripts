@@ -22,8 +22,6 @@
             isResult: controller === "web_training_questions" && action === "result",
             isHome: controller === "home" && action === "index",
         },
-
-        isMobile: window.innerWidth <= 768,
     };
 
     window.tacCurrentPage = page;

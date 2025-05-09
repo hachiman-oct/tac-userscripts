@@ -2,14 +2,15 @@
     'use strict';
 
     console.log("run display_question_count.js");
+    const page = window.tacCurrentPage.afterLogin;
 
     const interval = setInterval(() => {
-        if (window.tacCurrentPage) {
+        if (page) {
             clearInterval(interval);
 
-            if (window.tacCurrentPage.isChapterDetailPage) getQuestionCount();
+            if (page.isChapterDetailPage) getQuestionCount();
 
-            if (window.tacCurrentPage.isQuestionSolvePage) displayQuestionCount();
+            if (page.isQuestionSolvePage) displayQuestionCount();
         }
     }, 100);
 
@@ -30,10 +31,10 @@
         const count = localStorage.getItem(`tac_question_count_${questionID}`);
         if (!count) return 2;
 
-        const num = document.querySelector(".question-title")?.textContent.split("問題")[1]
+        const num = document.querySelector(".question-title")?.textContent.split("問題")[1];
 
         let title = document.querySelector("#title") || document.querySelector(".leransHeading h1");
-        title.textContent = `${title.textContent}　${num}問 / ${count}問`
-        console.log("done")
+        title.textContent = `${title.textContent}　${num}問 / ${count}問`;
+        console.log("done");
     }
 })();

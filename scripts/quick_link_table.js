@@ -41,12 +41,11 @@
 
     table.appendChild(tbody);
 
-    const isMobile = window.tacCurrentPage.isMobile;
-    const parentSel = isMobile ? '.contentInner' : '.homeMain';
+    let parentSel = '.contentInner' || '.homeMain';
     const parent = document.querySelector(parentSel);
     if (!parent) return;
 
-    const child = isMobile ? parent.firstChild : document.querySelector(".homeFirstTier")
+    let child = document.querySelector(".homeFirstTier") || parent.firstChild;
     parent.insertBefore(table, child);
 
     const link = document.createElement("link");
