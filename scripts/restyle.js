@@ -9,6 +9,7 @@
         ".homeBanner", // ホームのバナー
         ".homeFirstTier", // ホームの情報
         ".homeSecondTier", // ホームの情報
+        "footer",
 
         // Mobile
         ".leadTxt",
