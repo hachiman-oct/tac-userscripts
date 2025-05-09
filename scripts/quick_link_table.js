@@ -42,7 +42,7 @@
     table.appendChild(tbody);
 
     const isMobile = window.tacCurrentPage.isMobile;
-    const parentSel = isMobile ? '#mypage_content' : '.homeThirdTier';
+    const parentSel = isMobile ? '.contentInner' : '.homeThirdTier';
     const parent = document.querySelector(parentSel);
     if (!parent) return;
     parent.insertBefore(table, parent.firstChild);
