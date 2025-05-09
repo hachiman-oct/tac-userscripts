@@ -41,8 +41,7 @@
 
     table.appendChild(tbody);
 
-    let parentSel = '.contentInner' || '.homeMain';
-    const parent = document.querySelector(parentSel);
+    let parent = document.querySelector('.contentInner') || document.querySelector('.homeMain');
     if (!parent) return;
 
     let child = document.querySelector(".homeFirstTier") || parent.firstChild;
