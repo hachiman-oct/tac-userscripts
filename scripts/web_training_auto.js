@@ -33,7 +33,7 @@
 
     // 質問画面でキーボード操作対応
     const keyMap = {
-        enter: () => {
+        s: () => {
             if (page.isChapterDetailPage) startQuestion();
         },
         a: () => {
