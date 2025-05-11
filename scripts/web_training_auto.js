@@ -161,7 +161,6 @@
         }
 
         parent.insertBefore(container, parent.firstChild);
-        console.log("run web_training_auto.js mobile");
     }
 
     function goAnotherButton() {
