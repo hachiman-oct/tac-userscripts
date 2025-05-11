@@ -30,7 +30,11 @@
         }
     });
 
-    if (page.isQuestionSolvePage) goNextButton();
+    if (isMobile) {
+        addMobileCss();
+        if (page.isQuestionSolvePage) goNextButton();
+        if (page.isChapterDetailPage) goAnotherButton();
+    }
 
     // 質問画面でキーボード操作対応
     const keyMap = {
@@ -157,12 +161,33 @@
         }
 
         parent.insertBefore(container, parent.firstChild);
+        console.log("run web_training_auto.js mobile");
+    }
 
+    function goAnotherButton() {
+        if (document.getElementById("goAnotherButtons")) return;
+
+        const parent = document.querySelector(".main_content");
+        const container = document.createElement("div");
+        container.id = "goAnotherButtons";
+
+        [
+            { text: "< Prev", dir: "left" },
+            { text: "Next >", dir: "" }
+        ].forEach(({ text, dir }) => {
+            const btn = document.createElement("button");
+            btn.textContent = text;
+            btn.addEventListener("click", () => goAnotherQuestion(dir));
+            container.appendChild(btn);
+        });
+
+        parent.insertBefore(container, parent.firstChild);
+    }
+
+    function addMobileCss() {
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "https://hachiman-oct.github.io/tac-userscripts/css/go_next_button.css";
+        link.href = "https://hachiman-oct.github.io/tac-userscripts/css/button.css";
         document.head.appendChild(link);
-
-        console.log("run web_training_auto.js mobile");
     }
 })();
