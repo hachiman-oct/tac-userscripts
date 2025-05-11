@@ -3,6 +3,7 @@
 
     console.log("run display_question_count.js");
     const page = window.tacCurrentPage.afterLogin;
+    const isMobile = window.tacCurrentPage.isMobile;
 
     const interval = setInterval(() => {
         if (page) {
@@ -33,7 +34,7 @@
 
         const num = document.querySelector(".question-title")?.textContent.split("問題")[1];
 
-        let title = document.querySelector("#title") || document.querySelector(".leransHeading h1");
+        const title = isMobile ? document.querySelector(".leransHeading h1") : document.querySelector("#title");
         title.textContent = `${title.textContent}　${num}問 / ${count}問`;
         console.log("done");
     }

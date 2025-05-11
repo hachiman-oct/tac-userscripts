@@ -6,6 +6,8 @@
     const table = document.createElement('table');
     table.className = 'appended-table';
 
+    const isMobile = window.tacCurrentPage.isMobile;
+
     // theadを作成
     const thead = document.createElement('thead');
     const headRow = document.createElement('tr');
@@ -38,13 +40,13 @@
         tr.appendChild(td);
         tbody.appendChild(tr);
     });
-
     table.appendChild(tbody);
 
-    let parent = document.querySelector('.contentInner') || document.querySelector('.homeMain');
+    const parentSel = isMobile ? '.contentInner' : '.homeMain';
+    const parent = document.querySelector(parentSel);
+    const child = isMobile ? parent.firstChild : document.querySelector(".homeFirstTier");
     if (!parent) return;
 
-    let child = document.querySelector(".homeFirstTier") || parent.firstChild;
     parent.insertBefore(table, child);
 
     const link = document.createElement("link");

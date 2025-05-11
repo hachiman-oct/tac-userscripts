@@ -22,6 +22,8 @@
             isResult: controller === "web_training_questions" && action === "result",
             isHome: controller === "home" && action === "index",
         },
+
+        isMobile: document.querySelectorAll('link[rel="apple-touch-icon"]').length > 0
     };
 
     window.tacCurrentPage = page;

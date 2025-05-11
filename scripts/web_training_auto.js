@@ -4,6 +4,7 @@
     console.log("run web_training_auto.js");
 
     const page = window.tacCurrentPage.afterLogin;
+    const isMobile = window.tacCurrentPage.isMobile;
 
     // モーダルが開いていたら閉じる
     if (page.isQuestionSolvePage) {
@@ -142,30 +143,26 @@
     }
 
     function goNextButton() {
-        if (!document.getElementById("goNextButtons")) {
-            const parent = document.querySelector("#btn-section-answer");
-            const container = document.createElement("div");
-            container.id = "goNextButtons";
+        if (document.getElementById("goNextButtons")) return;
 
-            for (let key = 1; key <= 3; key++) {
-                const btn = document.createElement("button");
-                btn.textContent = `Go ${key}`;
+        const parent = document.querySelector("#btn-section-answer");
+        const container = document.createElement("div");
+        container.id = "goNextButtons";
 
-                btn.addEventListener("click", () => {
-                    goNextQuestion(key);
-                });
-
-                container.appendChild(btn);
-            }
-
-            parent.insertBefore(container, parent.firstChild);
-
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = "https://hachiman-oct.github.io/tac-userscripts/css/go_next_button.css";
-            document.head.appendChild(link);
-
-            console.log("run web_training_auto.js mobile");
+        for (let key = 1; key <= 3; key++) {
+            const btn = document.createElement("button");
+            btn.textContent = `Go ${key}`;
+            btn.addEventListener("click", () => goNextQuestion(key));
+            container.appendChild(btn);
         }
+
+        parent.insertBefore(container, parent.firstChild);
+
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "https://hachiman-oct.github.io/tac-userscripts/css/go_next_button.css";
+        document.head.appendChild(link);
+
+        console.log("run web_training_auto.js mobile");
     }
 })();
