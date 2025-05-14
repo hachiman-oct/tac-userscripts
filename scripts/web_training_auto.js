@@ -11,7 +11,6 @@
         const modal = document.querySelector('.modal-container');
         if (modal && modal.classList.contains('active')) {
             document.getElementById("beginning-question-close")?.click();
-            return;
         }
     }
 
