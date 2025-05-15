@@ -141,9 +141,6 @@
         const searchBtn = document.getElementsByClassName("searchBtn");
         const nextQuestionBtn = document.getElementById("next_question");
 
-        const changeEvent = new Event("change", { bubbles: true });
-        const inputEvent = new Event("input", { bubbles: true });
-
         if (checkbox) {
             checkbox.checked = (key !== 1);
             checkbox.dispatchEvent(new Event("change"));
