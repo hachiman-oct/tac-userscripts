@@ -134,6 +134,48 @@
         }
     }
 
+    function goNextQuestionMobile(key) {
+        const checkbox = document.querySelector("#btn_hukusyu input[type='checkbox']");
+        const select = document.getElementById("understanding");
+        const nextLink = document.querySelector("#next_question a");
+        const searchBtn = document.getElementsByClassName("searchBtn");
+        const nextQuestionBtn = document.getElementById("next_question");
+
+        const changeEvent = new Event("change", { bubbles: true });
+        const inputEvent = new Event("input", { bubbles: true });
+
+        if (checkbox) {
+            checkbox.checked = (key !== 1);
+            checkbox.dispatchEvent(changeEvent);
+            checkbox.dispatchEvent(inputEvent);
+        }
+
+        if (select) {
+            select.value = key;
+            select.dispatchEvent(changeEvent);
+            select.dispatchEvent(inputEvent);
+        }
+
+        // 少し待ってから遷移（記録処理が反映されるように）
+        setTimeout(() => {
+            if (!nextLink && searchBtn.length > 0 && nextQuestionBtn?.onclick) {
+                nextQuestionBtn.onclick();
+                return;
+            }
+
+            if (nextLink) {
+                nextLink.click();
+                return;
+            }
+
+            if (!nextLink && searchBtn.length === 0) {
+                const clearBtn = document.querySelector(".clearBtn a");
+                if (clearBtn) clearBtn.click();
+            }
+        }, 200);
+    }
+
+
     function goAnotherQuestion(key) {
         const match = location.pathname.match(/\/web_trainings\/(\d+)/);
         if (match) {
@@ -155,7 +197,7 @@
         for (let key = 1; key <= 3; key++) {
             const btn = document.createElement("button");
             btn.textContent = `Go ${key}`;
-            btn.addEventListener("click", () => goNextQuestion(key));
+            btn.addEventListener("click", () => goNextQuestionMobile(key));
             container.appendChild(btn);
         }
 
