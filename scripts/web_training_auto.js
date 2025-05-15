@@ -146,14 +146,12 @@
 
         if (checkbox) {
             checkbox.checked = (key !== 1);
-            checkbox.dispatchEvent(changeEvent);
-            checkbox.dispatchEvent(inputEvent);
+            checkbox.dispatchEvent(new Event("change"));
         }
 
         if (select) {
             select.value = key;
-            select.dispatchEvent(changeEvent);
-            select.dispatchEvent(inputEvent);
+            select.dispatchEvent(new Event("change"));
         }
 
         // 少し待ってから遷移（記録処理が反映されるように）
